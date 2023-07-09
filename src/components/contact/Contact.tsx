@@ -1,7 +1,7 @@
 import Form from "react-bootstrap/Form";
 import { Col, FloatingLabel, Row } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
 
@@ -12,6 +12,10 @@ const Contact = () => {
   const [lastname, setLastname] = useState("");
   const [email, setEmail] = useState("");
   const [reason, setReason] = useState("");
+
+  useEffect(() => {
+    document.title = "PGTechnologies - Contact";
+  }, []);
 
   const handleSubmit = async (event: any) => {
     if (
@@ -148,7 +152,7 @@ const Contact = () => {
                 <Form.Control
                   onChange={handleReason}
                   required
-                  placeholder="Reason for contact"
+                  placeholder="Contact Reason"
                   type="text"
                 />
                 <Form.Control.Feedback type="invalid">

@@ -187,32 +187,51 @@ const AdminModal = ({
               </tr>
             </thead>
             <tbody>
-              {adminData.response.map((data: any) => (
-                <tr key={data.contactId + "_" + "list"}>
-                  <td key={data.contactId + "_" + "contactid"}>
-                    {data.contactId}
-                  </td>
-                  <td key={data.contactId + "_" + "firstname"}>
-                    {data.firstname}
-                  </td>
-                  <td key={data.contactId + "_" + "lastname"}>
-                    {data.lastname}
-                  </td>
-                  <td key={data.contactId + "_" + "email"}>{data.email}</td>
-                  <td key={data.contactId + "_" + "read"}>
-                    {data.read ? "true" : "false"}
-                  </td>
-                  <td key={data.contactId + "_" + "edit"}>
+              {!adminData.length ? (
+                <tr key="nodata_list">
+                  <td key="nodata_contactid">No data</td>
+                  <td key="nodata_firstname">No data</td>
+                  <td key="nodata_lastname">No data</td>
+                  <td key="nodata_email">No data</td>
+                  <td key="nodata_read">No data</td>
+                  <td key="nodata">
                     <Button
-                      onClick={handleEditorShow}
-                      id={data.contactId}
+                      id="nodata"
                       style={{ backgroundColor: "#0D6EFD" }}
+                      disabled
                     >
-                      Edit
+                      No data
                     </Button>
                   </td>
                 </tr>
-              ))}
+              ) : (
+                adminData.response.map((data: any) => (
+                  <tr key={data.contactId + "_" + "list"}>
+                    <td key={data.contactId + "_" + "contactid"}>
+                      {data.contactId}
+                    </td>
+                    <td key={data.contactId + "_" + "firstname"}>
+                      {data.firstname}
+                    </td>
+                    <td key={data.contactId + "_" + "lastname"}>
+                      {data.lastname}
+                    </td>
+                    <td key={data.contactId + "_" + "email"}>{data.email}</td>
+                    <td key={data.contactId + "_" + "read"}>
+                      {data.read ? "true" : "false"}
+                    </td>
+                    <td key={data.contactId + "_" + "edit"}>
+                      <Button
+                        onClick={handleEditorShow}
+                        id={data.contactId}
+                        style={{ backgroundColor: "#0D6EFD" }}
+                      >
+                        Edit
+                      </Button>
+                    </td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </Table>
         </Modal.Body>
@@ -310,25 +329,40 @@ const AdminModal = ({
               </tr>
             </thead>
             <tbody>
-              {userData.map((data: any) => (
-                <tr key={data.userId + "_" + "userlist"}>
-                  <td key={data.userId + "_" + "id"}>{data.userId}</td>
-                  <td key={data.username + "_" + "username"}>
-                    {data.username}
-                  </td>
-                  <td key={data.email + "_" + "email"}>{data.email}</td>
-                  <td key={data.role + "_" + "role"}>{data.role}</td>
-                  <td key={data.userId}>
+              {!userData.length ? (
+                <tr key="nodata_userlist">
+                  <td key="nodata_id">No data</td>
+                  <td key="nodata_username">No data</td>
+                  <td key="nodata_email">No data</td>
+                  <td key="nodata_role">No data</td>
+                  <td key="nodata">
                     <Button
-                      onClick={handleSEditorShow}
-                      id={data.userId}
+                      id="nodata"
                       style={{ backgroundColor: "#0D6EFD" }}
-                    >
-                      Edit
-                    </Button>
+                    ></Button>
                   </td>
                 </tr>
-              ))}
+              ) : (
+                userData.map((data: any) => (
+                  <tr key={data.userId + "_" + "userlist"}>
+                    <td key={data.userId + "_" + "id"}>{data.userId}</td>
+                    <td key={data.username + "_" + "username"}>
+                      {data.username}
+                    </td>
+                    <td key={data.email + "_" + "email"}>{data.email}</td>
+                    <td key={data.role + "_" + "role"}>{data.role}</td>
+                    <td key={data.userId}>
+                      <Button
+                        onClick={handleSEditorShow}
+                        id={data.userId}
+                        style={{ backgroundColor: "#0D6EFD" }}
+                      >
+                        Edit
+                      </Button>
+                    </td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </Table>
         </Modal.Body>

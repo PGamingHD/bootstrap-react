@@ -10,6 +10,7 @@ const Staff = () => {
 
   useEffect(() => {
     setLoadedContent(false);
+    document.title = "PGTechnologies - Staff";
     setTimeout(() => {
       setLoadedContent(true);
     }, 50);

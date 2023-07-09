@@ -102,7 +102,7 @@ const loadedProfile = ({ profilePic, auth, setFile, file }: any) => {
               style={{ backgroundColor: "#0D6EFD", borderColor: "#0D6EFD" }}
             />
             <div className="col p-2"></div>
-            <Button onClick={handleUpload}>Upload Picture</Button>
+            <Button onClick={handleUpload}>Upload</Button>
           </Form.Group>
         </div>
         <div className="col p-2"></div>

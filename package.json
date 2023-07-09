@@ -6,7 +6,7 @@
   "proxy": "http://localhost:4000",
   "scripts": {
     "start": "concurrently \"npm:backend\" \"npm:dev\"",
-    "backend": "cd backend && node index.js",
+    "backend": "cd backend && npm run-script start",
     "dev": "vite --host",
     "build": "tsc && vite build",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",

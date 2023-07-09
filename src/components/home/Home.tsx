@@ -1,55 +1,84 @@
 import "./home.css";
 import { Carousel } from "react-bootstrap";
+import { useEffect } from "react";
 
 const Home = () => {
+  useEffect(() => {
+    document.title = "PGTechnologies - Home";
+  }, []);
+
   return (
     <>
       <Carousel className={"align-content-center"}>
         <Carousel.Item>
           <img
             className="d-block w-100"
-            src="https://cdn.discordapp.com/attachments/1010999257899204769/1057280526190387271/starters.png"
+            src="/src/assets/njs.png"
             alt="First slide"
           />
           <Carousel.Caption>
-            <h3>Main slide</h3>
-            <p>Why not check this slide out?</p>
+            <h3>Node.JS</h3>
+            <p>The JavaScript runtime I build all my projects with.</p>
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
           <img
             className="d-block w-100"
-            src="https://cdn.discordapp.com/attachments/1010999257899204769/1057280526190387271/starters.png"
+            src="/src/assets/ts.png"
             alt="Second slide"
           />
 
           <Carousel.Caption>
-            <h3>Secondary slide</h3>
-            <p>Why not check this slide out then?</p>
+            <h3>TypeScript</h3>
+            <p>The JavaScript superset I use for my projects.</p>
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
           <img
             className="d-block w-100"
-            src="https://cdn.discordapp.com/attachments/1010999257899204769/1057280526190387271/starters.png"
+            src="/src/assets/rejs.png"
             alt="Third slide"
           />
 
           <Carousel.Caption>
-            <h3>Third slide</h3>
-            <p>How about this slide, this is the last of its kind!</p>
+            <h3>React.JS</h3>
+            <p>The web framework I use for all my websites.</p>
+          </Carousel.Caption>
+        </Carousel.Item>
+        <Carousel.Item>
+          <img
+            className="d-block w-100"
+            src="/src/assets/exjs.png"
+            alt="Fourth slide"
+          />
+
+          <Carousel.Caption>
+            <h3>Exress.JS</h3>
+            <p>The backend framework I make all my backends with.</p>
+          </Carousel.Caption>
+        </Carousel.Item>
+        <Carousel.Item>
+          <img
+            className="d-block w-100"
+            src="/src/assets/djs.png"
+            alt="Fifth slide"
+          />
+
+          <Carousel.Caption>
+            <h3>Discord.JS</h3>
+            <p>The framework I work on Discord projects with.</p>
           </Carousel.Caption>
         </Carousel.Item>
       </Carousel>
-      <h1
+      <h2
         style={{
           marginTop: "5rem",
           textAlign: "center",
           color: "black",
         }}
       >
-        Hey
-      </h1>
+        PGTechnologies, what are we?
+      </h2>
       <p
         style={{
           fontSize: "20px",

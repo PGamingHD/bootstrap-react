@@ -1,7 +1,12 @@
 import "./error.css";
 import Button from "react-bootstrap/Button";
+import { useEffect } from "react";
 
 const Error = () => {
+  useEffect(() => {
+    document.title = "PGTechnologies - 404";
+  }, []);
+
   return (
     <>
       <div>

@@ -35,18 +35,18 @@ const LoadedHeader = ({
 }: any) => {
   return (
     <>
-      <Navbar expand="lg" className="bg-primary rounded push-down">
+      <Navbar expand="lg" sticky="top" className="bg-primary rounded push-down">
         <Container>
           <Navbar.Brand href="/">
             <img
               alt=""
-              src="/../../src/assets/discmon.jpg"
+              src="/../../src/assets/pg_logo.png"
               width="30"
               height="30"
               className="d-inline-block align-top"
               style={{ borderRadius: "5px" }}
             />{" "}
-            Discmon
+            <b>PGTechnologies</b>
           </Navbar.Brand>
 
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -58,6 +58,13 @@ const LoadedHeader = ({
               </Nav.Link>
               <Nav.Link href="/staff">
                 {window.location.pathname === "/staff" ? <b>Staff</b> : "Staff"}
+              </Nav.Link>
+              <Nav.Link href="/projects">
+                {window.location.pathname === "/projects" ? (
+                  <b>Projects</b>
+                ) : (
+                  "Projects"
+                )}
               </Nav.Link>
               <Nav.Link href="/contact">
                 {window.location.pathname === "/contact" ? (

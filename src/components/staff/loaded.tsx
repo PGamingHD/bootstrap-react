@@ -13,9 +13,12 @@ const loadedStaff = () => {
         <Card.Body>
           <Card.Title>PGamingHD</Card.Title>
           <Card.Title>
-            <i>Developer</i>
+            <i>Founder</i>
           </Card.Title>
-          <Card.Text>This is information about PGamingHD!</Card.Text>
+          <Card.Text>
+            My name is Pontus, I am 20 years old and live in Sweden. I love to
+            develop backend projects on my free time.
+          </Card.Text>
           <Button
             variant="primary"
             href="https://discordapp.com/users/266726434855321600/"
