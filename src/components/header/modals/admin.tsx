@@ -24,7 +24,6 @@ const AdminModal = ({
   useEffect(() => {
     if (!filteredEditor) return;
     if (filteredEditor[0].read) {
-      console.log("CHECKED BY DEFAULT");
       setIsChecked(true);
     } else {
       setIsChecked(false);
@@ -157,14 +156,12 @@ const AdminModal = ({
     setShowSEditor(true);
     handleDevClose();
   };
-  const handleCheckSubmit = (event: any) => {
-    console.log(event.target.checked);
+  const handleCheckSubmit = () => {
     if (isChecked) setIsChecked(false);
     else setIsChecked(true);
   };
 
   const handleRoleChange = (event: any) => {
-    console.log(event.target.value);
     setUserRole(event.target.value);
   };
 
@@ -187,51 +184,32 @@ const AdminModal = ({
               </tr>
             </thead>
             <tbody>
-              {!adminData.length ? (
-                <tr key="nodata_list">
-                  <td key="nodata_contactid">No data</td>
-                  <td key="nodata_firstname">No data</td>
-                  <td key="nodata_lastname">No data</td>
-                  <td key="nodata_email">No data</td>
-                  <td key="nodata_read">No data</td>
-                  <td key="nodata">
+              {adminData.response.map((data: any) => (
+                <tr key={data.contactId + "_" + "list"}>
+                  <td key={data.contactId + "_" + "contactid"}>
+                    {data.contactId}
+                  </td>
+                  <td key={data.contactId + "_" + "firstname"}>
+                    {data.firstname}
+                  </td>
+                  <td key={data.contactId + "_" + "lastname"}>
+                    {data.lastname}
+                  </td>
+                  <td key={data.contactId + "_" + "email"}>{data.email}</td>
+                  <td key={data.contactId + "_" + "read"}>
+                    {data.read ? "true" : "false"}
+                  </td>
+                  <td key={data.contactId + "_" + "edit"}>
                     <Button
-                      id="nodata"
+                      onClick={handleEditorShow}
+                      id={data.contactId}
                       style={{ backgroundColor: "#0D6EFD" }}
-                      disabled
                     >
-                      No data
+                      Edit
                     </Button>
                   </td>
                 </tr>
-              ) : (
-                adminData.response.map((data: any) => (
-                  <tr key={data.contactId + "_" + "list"}>
-                    <td key={data.contactId + "_" + "contactid"}>
-                      {data.contactId}
-                    </td>
-                    <td key={data.contactId + "_" + "firstname"}>
-                      {data.firstname}
-                    </td>
-                    <td key={data.contactId + "_" + "lastname"}>
-                      {data.lastname}
-                    </td>
-                    <td key={data.contactId + "_" + "email"}>{data.email}</td>
-                    <td key={data.contactId + "_" + "read"}>
-                      {data.read ? "true" : "false"}
-                    </td>
-                    <td key={data.contactId + "_" + "edit"}>
-                      <Button
-                        onClick={handleEditorShow}
-                        id={data.contactId}
-                        style={{ backgroundColor: "#0D6EFD" }}
-                      >
-                        Edit
-                      </Button>
-                    </td>
-                  </tr>
-                ))
-              )}
+              ))}
             </tbody>
           </Table>
         </Modal.Body>
@@ -329,40 +307,25 @@ const AdminModal = ({
               </tr>
             </thead>
             <tbody>
-              {!userData.length ? (
-                <tr key="nodata_userlist">
-                  <td key="nodata_id">No data</td>
-                  <td key="nodata_username">No data</td>
-                  <td key="nodata_email">No data</td>
-                  <td key="nodata_role">No data</td>
-                  <td key="nodata">
+              {userData.map((data: any) => (
+                <tr key={data.userId + "_" + "userlist"}>
+                  <td key={data.userId + "_" + "id"}>{data.userId}</td>
+                  <td key={data.username + "_" + "username"}>
+                    {data.username}
+                  </td>
+                  <td key={data.email + "_" + "email"}>{data.email}</td>
+                  <td key={data.role + "_" + "role"}>{data.role}</td>
+                  <td key={data.userId}>
                     <Button
-                      id="nodata"
+                      onClick={handleSEditorShow}
+                      id={data.userId}
                       style={{ backgroundColor: "#0D6EFD" }}
-                    ></Button>
+                    >
+                      Edit
+                    </Button>
                   </td>
                 </tr>
-              ) : (
-                userData.map((data: any) => (
-                  <tr key={data.userId + "_" + "userlist"}>
-                    <td key={data.userId + "_" + "id"}>{data.userId}</td>
-                    <td key={data.username + "_" + "username"}>
-                      {data.username}
-                    </td>
-                    <td key={data.email + "_" + "email"}>{data.email}</td>
-                    <td key={data.role + "_" + "role"}>{data.role}</td>
-                    <td key={data.userId}>
-                      <Button
-                        onClick={handleSEditorShow}
-                        id={data.userId}
-                        style={{ backgroundColor: "#0D6EFD" }}
-                      >
-                        Edit
-                      </Button>
-                    </td>
-                  </tr>
-                ))
-              )}
+              ))}
             </tbody>
           </Table>
         </Modal.Body>
@@ -410,6 +373,11 @@ const AdminModal = ({
                 defaultValue={!filteredSEditor ? "" : filteredSEditor[0]?.role}
                 aria-label="Default select example"
                 onChange={handleRoleChange}
+                disabled={
+                  !filteredSEditor
+                    ? true
+                    : auth()?.role === filteredSEditor[0]?.role
+                }
               >
                 <option value="MEMBER">MEMBER</option>
                 <option value="ADMIN">ADMIN</option>
@@ -419,7 +387,13 @@ const AdminModal = ({
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="danger" onClick={deleteAccount}>
+          <Button
+            variant="danger"
+            onClick={deleteAccount}
+            disabled={
+              !filteredSEditor ? true : auth()?.role === filteredSEditor[0].role
+            }
+          >
             Delete Account
           </Button>
           <Button variant="secondary" onClick={() => setShowSEditor(false)}>

@@ -23,7 +23,7 @@ const Profile = () => {
 
   useEffect(() => {
     setLoadedContent(false);
-    document.title = "PGtechnologies - Profile";
+    document.title = "PGTechnologies - Profile";
 
     (async () => {
       const profileData = await axios.get("/api/profile/" + auth()?.username);

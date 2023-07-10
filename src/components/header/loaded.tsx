@@ -40,7 +40,7 @@ const LoadedHeader = ({
           <Navbar.Brand href="/">
             <img
               alt=""
-              src="/../../src/assets/pg_logo.png"
+              src="/pg_logo.png"
               width="30"
               height="30"
               className="d-inline-block align-top"

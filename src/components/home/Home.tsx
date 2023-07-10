@@ -11,22 +11,14 @@ const Home = () => {
     <>
       <Carousel className={"align-content-center"}>
         <Carousel.Item>
-          <img
-            className="d-block w-100"
-            src="/src/assets/njs.png"
-            alt="First slide"
-          />
+          <img className="d-block w-100" src="/njs.png" alt="First slide" />
           <Carousel.Caption>
             <h3>Node.JS</h3>
             <p>The JavaScript runtime I build all my projects with.</p>
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
-          <img
-            className="d-block w-100"
-            src="/src/assets/ts.png"
-            alt="Second slide"
-          />
+          <img className="d-block w-100" src="/ts.png" alt="Second slide" />
 
           <Carousel.Caption>
             <h3>TypeScript</h3>
@@ -34,11 +26,7 @@ const Home = () => {
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
-          <img
-            className="d-block w-100"
-            src="/src/assets/rejs.png"
-            alt="Third slide"
-          />
+          <img className="d-block w-100" src="/rejs.png" alt="Third slide" />
 
           <Carousel.Caption>
             <h3>React.JS</h3>
@@ -46,11 +34,7 @@ const Home = () => {
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
-          <img
-            className="d-block w-100"
-            src="/src/assets/exjs.png"
-            alt="Fourth slide"
-          />
+          <img className="d-block w-100" src="/exjs.png" alt="Fourth slide" />
 
           <Carousel.Caption>
             <h3>Exress.JS</h3>
@@ -58,11 +42,7 @@ const Home = () => {
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
-          <img
-            className="d-block w-100"
-            src="/src/assets/djs.png"
-            alt="Fifth slide"
-          />
+          <img className="d-block w-100" src="/djs.png" alt="Fifth slide" />
 
           <Carousel.Caption>
             <h3>Discord.JS</h3>

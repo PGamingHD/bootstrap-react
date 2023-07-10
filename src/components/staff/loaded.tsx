@@ -7,7 +7,7 @@ const loadedStaff = () => {
       <Card style={{ width: "18rem" }}>
         <Card.Img
           variant="top"
-          src="/../../src/assets/pg_logo.png"
+          src="/pg_logo.png"
           style={{ background: "#000", borderRadius: "5px" }}
         />
         <Card.Body>
@@ -31,7 +31,7 @@ const loadedStaff = () => {
       <Card style={{ width: "18rem" }}>
         <Card.Img
           variant="top"
-          src="/../../src/assets/rahx.png"
+          src="/rahx.png"
           style={{ background: "#000", borderRadius: "5px" }}
         />
         <Card.Body>
@@ -52,7 +52,7 @@ const loadedStaff = () => {
       <Card style={{ width: "18rem" }}>
         <Card.Img
           variant="top"
-          src="/../../src/assets/mrdeadkingz.png"
+          src="/mrdeadkingz.png"
           style={{ background: "#000", borderRadius: "5px" }}
         />
         <Card.Body>

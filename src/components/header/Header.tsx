@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import "./header.css";
 
 //REACT COMPONENTS
-import { post } from "../../utilities/backending.js";
+import { post } from "../../utilities/backending";
 import { useAuthUser, useSignIn, useSignOut } from "react-auth-kit";
 import Swal from "sweetalert2";
 import "sweetalert2/src/sweetalert2.scss";

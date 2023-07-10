@@ -9,12 +9,14 @@ const Profile = () => {
 
   return (
     <>
-      <h1 style={{ marginBottom: "1rem" }}>Previous Projects</h1>
+      <h1 style={{ marginBottom: "1rem", color: "black" }}>
+        Previous Projects
+      </h1>
       <div className="card-container">
         <Card style={{ width: "18rem" }}>
           <Card.Img
             variant="top"
-            src="/../../src/assets/vixirus.png"
+            src="/vixirus.png"
             style={{
               background: "#000",
               borderRadius: "5px",
@@ -36,7 +38,7 @@ const Profile = () => {
         <Card style={{ width: "18rem" }}>
           <Card.Img
             variant="top"
-            src="/../../src/assets/discmon.jpg"
+            src="/discmon.jpg"
             style={{
               background: "#000",
               borderRadius: "5px",
@@ -57,7 +59,7 @@ const Profile = () => {
         <Card style={{ width: "18rem" }}>
           <Card.Img
             variant="top"
-            src="/../../src/assets/bitpizza.png"
+            src="/bitpizza.png"
             style={{
               background: "#000",
               borderRadius: "5px",
@@ -78,7 +80,7 @@ const Profile = () => {
         <Card style={{ width: "18rem" }}>
           <Card.Img
             variant="top"
-            src="/../../src/assets/lua.png"
+            src="/lua.png"
             style={{
               background: "#000",
               borderRadius: "5px",
@@ -99,7 +101,7 @@ const Profile = () => {
         <Card style={{ width: "18rem" }}>
           <Card.Img
             variant="top"
-            src="/../../src/assets/vixirus.png"
+            src="/vixirus.png"
             style={{
               background: "#000",
               borderRadius: "5px",
@@ -120,7 +122,7 @@ const Profile = () => {
         <Card style={{ width: "18rem" }}>
           <Card.Img
             variant="top"
-            src="/../../src/assets/discmon.jpg"
+            src="/discmon.jpg"
             style={{
               background: "#000",
               borderRadius: "5px",
@@ -138,7 +140,7 @@ const Profile = () => {
           </Card.Body>
         </Card>
       </div>
-      <h1 style={{ marginBottom: "1rem", marginTop: "1rem" }}>
+      <h1 style={{ marginBottom: "1rem", marginTop: "1rem", color: "black" }}>
         Ongoing Projects
       </h1>
       <p style={{ fontSize: "25px" }}>
