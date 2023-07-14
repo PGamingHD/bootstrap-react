@@ -1,7 +1,7 @@
 import { Form, Modal, Table } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import { useEffect, useState } from "react";
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 import Swal from "sweetalert2";
 
 const AdminModal = ({
@@ -11,15 +11,21 @@ const AdminModal = ({
   adminData,
   userData,
 }: any) => {
-  const [showEditor, setShowEditor] = useState<any>(false);
-  const [showSEditor, setShowSEditor] = useState<any>(false);
-  const [showDev, setShowDev] = useState<any>(false);
+  const [showEditor, setShowEditor] = useState<boolean>(false);
+  const [showSEditor, setShowSEditor] = useState<boolean>(false);
+  const [showDev, setShowDev] = useState<boolean>(false);
+  const [showProjects, setShowProjects] = useState<boolean>(false);
+
+  const [projectName, setProjectName] = useState<string>("");
+  const [projectPic, setProjectPic] = useState<string>("");
+  const [projectDesc, setProjectDesc] = useState<string>("");
+  const [projectStatus, setProjectStatus] = useState<string>("PREVIOUS");
 
   const [filteredEditor, setFilteredEditor] = useState<any>();
   const [filteredSEditor, setFilteredSEditor] = useState<any>();
-  const [isChecked, setIsChecked] = useState<any>(false);
+  const [isChecked, setIsChecked] = useState<boolean>(false);
 
-  const [userRole, setUserRole] = useState<any>("MEMBER");
+  const [userRole, setUserRole] = useState<string>("MEMBER");
 
   useEffect(() => {
     if (!filteredEditor) return;
@@ -42,9 +48,110 @@ const AdminModal = ({
     setShowEditor(true);
     handleAdminClose();
   };
+
+  const handleProjectsShow = () => setShowProjects(true);
+  const handleProjectsClose = () => setShowProjects(false);
+
+  const handleProjectSwitch = () => {
+    handleDevClose();
+    handleProjectsShow();
+  };
+
+  const handleProjectName = (event: any) => setProjectName(event.target.value);
+  const handleProjectPic = (event: any) => setProjectPic(event.target.value);
+  const handleProjectDesc = (event: any) => setProjectDesc(event.target.value);
+  const handleProjectStatus = (event: any) =>
+    setProjectStatus(event.target.value);
+
+  const projectSubmit = async () => {
+    if (projectName === "") {
+      await Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 1000,
+        timerProgressBar: true,
+      }).fire({
+        icon: "error",
+        title: `Projectname must be filled in`,
+      });
+
+      return window.location.reload();
+    }
+
+    if (projectPic === "") {
+      await Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 1000,
+        timerProgressBar: true,
+      }).fire({
+        icon: "error",
+        title: `Projectpicture must be filled in`,
+      });
+
+      return window.location.reload();
+    }
+
+    if (projectDesc === "") {
+      await Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 1000,
+        timerProgressBar: true,
+      }).fire({
+        icon: "error",
+        title: `Projectdescription must be filled in`,
+      });
+
+      return window.location.reload();
+    }
+
+    if (projectStatus === "") {
+      await Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 1000,
+        timerProgressBar: true,
+      }).fire({
+        icon: "error",
+        title: `Projectstatus must be filled in`,
+      });
+
+      return window.location.reload();
+    }
+
+    const res: AxiosResponse<any, any> = await axios.post("/api/projects", {
+      projectname: projectName,
+      projectpic: projectPic,
+      projectdesc: projectDesc,
+      projectstatus: projectStatus,
+    });
+
+    if (res.data.message === "success") {
+      handleProjectsClose();
+
+      await Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 1000,
+        timerProgressBar: true,
+      }).fire({
+        icon: "success",
+        title: `New project was added!`,
+      });
+
+      return window.location.reload();
+    }
+  };
+
   const handleEditorClose = () => setShowEditor(false);
 
-  const editorSubmit = async () => {
+  const editorSubmit = async (): Promise<void> => {
     const res = await axios.put("/api/contact/updateRead", {
       isRead: isChecked,
       contactId: !filteredEditor ? 0 : parseInt(filteredEditor[0].contactId),
@@ -68,7 +175,7 @@ const AdminModal = ({
     }
   };
 
-  const editorSSubmit = async () => {
+  const editorSSubmit = async (): Promise<void> => {
     const res = await axios.put("api/users/updateRole", {
       userId: filteredSEditor[0].userId,
       newRole: userRole,
@@ -92,7 +199,7 @@ const AdminModal = ({
     }
   };
 
-  const deleteAccount = async () => {
+  const deleteAccount = async (): Promise<void> => {
     const res = await axios.delete(
       "api/users/removeUser/" + filteredSEditor[0]?.username
     );
@@ -115,7 +222,7 @@ const AdminModal = ({
     }
   };
 
-  const deleteContact = async () => {
+  const deleteContact = async (): Promise<void> => {
     const res = await axios.delete(
       "api/contact/deleteContact/" + filteredEditor[0]?.contactId
     );
@@ -146,7 +253,7 @@ const AdminModal = ({
     handleDevShow();
   };
 
-  const handleSEditorShow = (event: any) => {
+  const handleSEditorShow = (event: any): void => {
     const onlyOne = userData.filter(
       (data: any) => data.userId === parseInt(event.target.id)
     );
@@ -330,6 +437,9 @@ const AdminModal = ({
           </Table>
         </Modal.Body>
         <Modal.Footer>
+          <Button variant="primary" onClick={handleProjectSwitch}>
+            Add Project
+          </Button>
           <Button variant="secondary" onClick={handleDevClose}>
             Close
           </Button>
@@ -401,6 +511,65 @@ const AdminModal = ({
           </Button>
           <Button variant="primary" onClick={editorSSubmit}>
             Save Changes
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+      <Modal show={showProjects} onHide={handleProjectsClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Add a new project</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form>
+            <Form.Group className="mb-3">
+              <Form.Label>Project Name</Form.Label>
+              <Form.Control
+                onChange={handleProjectName}
+                placeholder="Project Name"
+                type="text"
+                autoComplete="name"
+                id="projectName"
+              />
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>Project Picture</Form.Label>
+              <Form.Control
+                onChange={handleProjectPic}
+                placeholder="Project Picture"
+                type="text"
+                autoComplete="picture"
+                id="projectPic"
+              />
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>Project Description</Form.Label>
+              <Form.Control
+                onChange={handleProjectDesc}
+                placeholder="Project Description"
+                type="text"
+                autoComplete="description"
+                id="projectDesc"
+              />
+            </Form.Group>
+            <Form.Group>
+              <Form.Label>Project Status</Form.Label>
+              <Form.Select
+                defaultValue={projectStatus}
+                aria-label="Project Status"
+                onChange={handleProjectStatus}
+              >
+                <option value="PREVIOUS">PREVIOUS</option>
+                <option value="ONGOING">ONGOING</option>
+              </Form.Select>
+            </Form.Group>
+          </Form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="primary" onClick={projectSubmit}>
+            Add
+          </Button>
+          <Button variant="secondary" onClick={handleProjectsClose}>
+            Close
           </Button>
         </Modal.Footer>
       </Modal>

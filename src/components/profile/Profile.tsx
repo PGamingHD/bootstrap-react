@@ -13,6 +13,8 @@ const Profile = () => {
   const navigate = useNavigate();
   const [loadedContent, setLoadedContent] = useState(false);
 
+  const [profileDesc, setProfileDesc] = useState("");
+
   const [profilePic, setProfilePic] = useState({
     type: "link",
     picture:
@@ -50,6 +52,8 @@ const Profile = () => {
           auth={auth}
           setFile={setFile}
           file={file}
+          profileDesc={profileDesc}
+          setProfileDesc={setProfileDesc}
         />
       ) : (
         <LoadingProfile />

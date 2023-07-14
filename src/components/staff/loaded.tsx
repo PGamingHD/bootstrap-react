@@ -1,14 +1,47 @@
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 
-const loadedStaff = () => {
+const loadedStaff = ({ staffData, profilePic }: any) => {
   return (
     <div className="card-container">
+      {console.log(staffData)}
+      {staffData.map(({ userId, role, description, displayname }: any) => (
+        <Card style={{ width: "18rem" }}>
+          <Card.Img
+            variant="top"
+            src={
+              profilePic.type === "link"
+                ? profilePic.picture
+                : `data:image/jpg;base64,${profilePic?.picture}`
+            }
+            style={{
+              background: "#000",
+              borderRadius: "5px",
+              width: "222px",
+              height: "222px",
+            }}
+          />
+          <Card.Body>
+            <Card.Title>{displayname}</Card.Title>
+            <Card.Title>
+              <i>
+                {role.charAt(0).toUpperCase() + role.toLowerCase().slice(1)}
+              </i>
+            </Card.Title>
+            <Card.Text>{description}</Card.Text>
+          </Card.Body>
+        </Card>
+      ))}
       <Card style={{ width: "18rem" }}>
         <Card.Img
           variant="top"
           src="/pg_logo.png"
-          style={{ background: "#000", borderRadius: "5px" }}
+          style={{
+            background: "#000",
+            borderRadius: "5px",
+            width: "222px",
+            height: "222px",
+          }}
         />
         <Card.Body>
           <Card.Title>PGamingHD</Card.Title>
@@ -32,7 +65,12 @@ const loadedStaff = () => {
         <Card.Img
           variant="top"
           src="/rahx.png"
-          style={{ background: "#000", borderRadius: "5px" }}
+          style={{
+            background: "#000",
+            borderRadius: "5px",
+            width: "222px",
+            height: "222px",
+          }}
         />
         <Card.Body>
           <Card.Title>Rahx</Card.Title>
